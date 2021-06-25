@@ -1,0 +1,46 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Contact</h2>
+
+            <% if (!contact) { %>
+                <div class="alert alert-danger fw-bold" role="alert">
+                    Data contact tidak ada 
+                    <a href="/contact" class="alert-link fw-normal">
+                        <i class="bi bi-arrow-left"></i> 
+                        Kembali ke Daftar Contact
+                    </a>.
+                </div>
+            <% } else { %>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= titleCase(contact.nama) %>
+                        </h5>
+                        <p class="card-text">
+                            <%= titleCase(contact.nohp) %>
+                        </p>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <%= titleCase(contact.email) %>
+                        </h6>
+                        <form action="/contact?_method=DELETE" method="POST" class="d-inline">
+                            <input type="hidden" name="nama" value="<%= contact.nama %>">
+                            <button type="submit" class="btn btn-danger badge" onclick="return confirm('Yakin??')">
+                                <i class="bi bi-trash"></i>
+                                Delete
+                            </button>
+                        </form>
+                        <a href="/contact/edit/<%= contact.nama %>" class="btn btn-success badge">
+                            <i class="bi bi-pencil-square"></i> 
+                            Ubah
+                        </a>
+                        <a href="/contact" class="card-link d-block mt-3 btn btn-sm btn-secondary">
+                            <i class="bi bi-arrow-left"></i> 
+                            Kembali
+                        </a>
+                    </div>
+                </div>
+            <% } %> 
+        </div>
+    </div>
+</div>

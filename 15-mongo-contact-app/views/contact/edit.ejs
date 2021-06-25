@@ -1,0 +1,76 @@
+<style>
+    .own-invalid-feedback {
+        width: 100%;
+        margin-top: .25rem;
+        font-size: .875em;
+        color: #dc3545;
+    }
+</style>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Form Ubah Data Contact</h2>
+
+            <form method="POST" action="/contact?_method=PUT">
+                <input type="hidden" name="oldNama" value="<%= (contact.oldNama || contact.nama) %>">
+                <input type="hidden" name="_id" value="<%= contact._id %>">
+                <div class="mb-3">
+                    <label for="nama" class="form-label">
+                        Nama 
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="nama" name="nama" required autocomplete="off" value="<%= contact.nama %>">
+                    <% if (typeof errors != 'undefined') { %>
+                        <div class="own-invalid-feedback">
+                            <% errors.forEach(error => { %>
+                                <% if (error.param == "nama") { %>
+                                    <%= error.msg %>
+                                <% } %>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        Email 
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" required autocomplete="off" value="<%= contact.email %>">
+                    <% if (typeof errors != 'undefined') { %>
+                        <div class="own-invalid-feedback">
+                            <% errors.forEach(error => { %>
+                                <% if (error.param == "email") { %>
+                                    <%= error.msg %>
+                                <% } %>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="mb-3">
+                    <label for="nohp" class="form-label">
+                        No Handphone 
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="nohp" name="nohp" required autocomplete="off" value="<%= contact.nohp %>">
+                    <% if (typeof errors != 'undefined') { %>
+                        <div class="own-invalid-feedback">
+                            <% errors.forEach(error => { %>
+                                <% if (error.param == "nohp") { %>
+                                    <%= error.msg %>
+                                <% } %>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-lg"></i>
+                    Ubah Data Contact
+                </button>
+                <a href="/contact/<%= contact.nama %> " class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Kembali
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
